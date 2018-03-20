@@ -1,12 +1,11 @@
 class TimeUnit {
   constructor(units) {
     this.units = units
-    timeUnits.forEach(klassFrom => {
-      timeUnits.forEach(klassTo => {
-        klassFrom.prototype[`in${klassTo.name}s`] = function() {
-          return this.convertTo(klassTo)
-        }
-      })
+
+    timeUnits.forEach(klassTo => {
+      this.constructor.prototype[`in${klassTo.name}s`] = function() {
+        return this.convertTo(klassTo)
+      }
     })
   }
 
@@ -67,7 +66,6 @@ class Day extends TimeUnit {
 }
 
 const timeUnits = [Second, Minute, Hour, Day]
-
 
 const seconds = units => {
   return new Second(units)
