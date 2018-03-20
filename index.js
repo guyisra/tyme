@@ -2,49 +2,70 @@ class TimeUnit {
   constructor(units) {
     this.units = units
   }
-
-  inSeconds() {
-    return this.units
-  }
+  
 }
 
 class Second extends TimeUnit {
-
-  inMinutes() {
-    return this.units / 60
+  static stepUp() {
+    return 60
   }
 
-}
-
-class Minute extends Second {
-  constructor(units) {
-    super(units)
-  }
-
-  inSeconds() {
-    return super.inSeconds() * 60
+  static stepDown() {
+    return 1000
   }
 }
 
-class Hour extends Minute {
-  constructor(units) {
-    super(units)
+class Minute extends TimeUnit {
+  static stepUp() {
+    return 60
   }
 
-  inSeconds() {
-    return super.inSeconds() * 60
+  static stepDown() {
+    return 60
   }
 }
 
-class Day extends Hour {
-  constructor(units) {
-    super(units)
+class Hour extends TimeUnit {
+  static stepUp() {
+    return 24
   }
 
-  inSeconds() {
-    return super.inSeconds() * 24
+  static stepDown() {
+    return 60
   }
 }
+
+class Day extends TimeUnit {
+  static stepUp() {
+    return 7
+  }
+
+  static stepDown() {
+    return 24
+  }
+}
+
+const timeUnits = [Second, Minute, Hour, Day]
+
+timeUnits.forEach(klassFrom => {
+  timeUnits.forEach(klassTo => {
+    klassFrom.prototype[`in${klassTo.name}s`] = function(){
+      const from = timeUnits.findIndex(x => x === klassFrom)
+      const to = timeUnits.findIndex(x => x === klassTo)
+      if (to < from) {
+        return (
+          this.units *
+          timeUnits.slice(to, from).reduce((prev, current) => prev * current.stepUp(), 1)
+        )
+      } else {
+        return (
+          this.units *
+          timeUnits.slice(from, to).reduce((prev, current) => prev / current.stepDown(), 1)
+        )
+      }
+    }
+  })
+})
 
 const seconds = units => {
   return new Second(units)
@@ -82,9 +103,11 @@ module.exports = {
   seconds,
   minutes,
   hours,
-  days,
-  weeks,
-  months,
-  years,
-  decades
+  days
+  // weeks,
+  // months,
+  // years,
+  // decades
 }
+
+// console.log(hours(5).inSeconds())

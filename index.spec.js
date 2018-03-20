@@ -17,6 +17,10 @@ describe('ssseconds', () => {
     expect(timeMe.days(1).inSeconds()).toEqual(86400)
   })
 
+   it('convet from days to hours', () => {
+     expect(timeMe.days(1).inHours()).toEqual(24)
+   })
+
   // it('convet from weeks to seconds', () => {
   //   expect(seconds.weeks(10).inSeconds()).toEqual(36000)
   // })
