@@ -1,8 +1,29 @@
 class TimeUnit {
   constructor(units) {
     this.units = units
+    timeUnits.forEach(klassFrom => {
+      timeUnits.forEach(klassTo => {
+        klassFrom.prototype[`in${klassTo.name}s`] = function() {
+          return this.convertTo(klassTo)
+        }
+      })
+    })
   }
-  
+
+  convertTo(otherUnit) {
+    const from = timeUnits.findIndex(x => x.name === this.constructor.name)
+    const to = timeUnits.findIndex(x => x === otherUnit)
+    if (to < from) {
+      return (
+        this.units * timeUnits.slice(to, from).reduce((prev, current) => prev * current.stepUp(), 1)
+      )
+    } else {
+      return (
+        this.units *
+        timeUnits.slice(from, to).reduce((prev, current) => prev / current.stepDown(), 1)
+      )
+    }
+  }
 }
 
 class Second extends TimeUnit {
@@ -47,25 +68,6 @@ class Day extends TimeUnit {
 
 const timeUnits = [Second, Minute, Hour, Day]
 
-timeUnits.forEach(klassFrom => {
-  timeUnits.forEach(klassTo => {
-    klassFrom.prototype[`in${klassTo.name}s`] = function(){
-      const from = timeUnits.findIndex(x => x === klassFrom)
-      const to = timeUnits.findIndex(x => x === klassTo)
-      if (to < from) {
-        return (
-          this.units *
-          timeUnits.slice(to, from).reduce((prev, current) => prev * current.stepUp(), 1)
-        )
-      } else {
-        return (
-          this.units *
-          timeUnits.slice(from, to).reduce((prev, current) => prev / current.stepDown(), 1)
-        )
-      }
-    }
-  })
-})
 
 const seconds = units => {
   return new Second(units)
