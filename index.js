@@ -10,104 +10,73 @@ class TimeUnit {
   }
 
   convertTo(otherUnit) {
-    const from = timeUnits.findIndex(x => x.name === this.constructor.name)
-    const to = timeUnits.findIndex(x => x === otherUnit)
-    if (to < from) {
-      return (
-        this.units * timeUnits.slice(to, from).reduce((prev, current) => prev * current.stepUp(), 1)
-      )
-    } else {
-      return (
-        this.units *
-        timeUnits.slice(from, to).reduce((prev, current) => prev / current.stepDown(), 1)
-      )
-    }
+    return this.units * this.constructor.inSeconds() / otherUnit.inSeconds()
   }
 }
 
 class Second extends TimeUnit {
-  static stepUp() {
-    return 60
-  }
-
-  static stepDown() {
-    return 1000
+  static inSeconds() {
+    return 1
   }
 }
 
 class Minute extends TimeUnit {
-  static stepUp() {
-    return 60
-  }
-
-  static stepDown() {
-    return 60
+  static inSeconds() {
+    return Second.inSeconds() * 60
   }
 }
 
 class Hour extends TimeUnit {
-  static stepUp() {
-    return 24
-  }
-
-  static stepDown() {
-    return 60
+  static inSeconds() {
+    return Minute.inSeconds() * 60
   }
 }
 
 class Day extends TimeUnit {
-  static stepUp() {
-    return 7
-  }
-
-  static stepDown() {
-    return 24
+  static inSeconds() {
+    return Hour.inSeconds() * 24
   }
 }
 
-const timeUnits = [Second, Minute, Hour, Day]
-
-const seconds = units => {
-  return new Second(units)
+class Week extends TimeUnit {
+  static inSeconds() {
+    return Day.inSeconds() * 7
+  }
 }
 
-const minutes = units => {
-  return new Minute(units)
+class Month extends TimeUnit {
+  static inSeconds() {
+    return Day.inSeconds() * 31
+  }
 }
 
-const hours = units => {
-  return new Hour(units)
+class Year extends TimeUnit {
+  static inSeconds() {
+    return Day.inSeconds() * 365
+  }
 }
 
-const days = units => {
-  return new Day(units)
+class Decade extends TimeUnit {
+  static inSeconds() {
+    return Year.inSeconds() * 10
+  }
 }
 
-// const weeks = numOfHours => {
-//   return new Hour(numOfHours)
-// }
-
-// const months = numOfHours => {
-//   return new Hour(numOfHours)
-// }
-
-// const years = numOfHours => {
-//   return new Hour(numOfHours)
-// }
-
-// const decades = numOfHours => {
-//   return new Hour(numOfHours)
-// }
-
-module.exports = {
-  seconds,
-  minutes,
-  hours,
-  days
-  // weeks,
-  // months,
-  // years,
-  // decades
+class Millisecond extends TimeUnit {
+  static inSeconds () {
+    return Second.inSeconds() / 1000
+  }
 }
 
-// console.log(hours(5).inSeconds())
+const timeUnits = [Second, Minute, Hour, Day, Week, Month, Year, Decade, Millisecond]
+
+
+const timeFunctions = {}
+timeUnits.forEach(timeUnit => {
+  const funcName = `${timeUnit.name.toLocaleLowerCase()}s`
+  timeFunctions[funcName] = units => {
+    return new timeUnit(units)
+  }
+})
+
+module.exports = timeFunctions

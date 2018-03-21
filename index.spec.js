@@ -1,38 +1,39 @@
 const timeMe = require('.')
 
 describe('ssseconds', () => {
-  it('convet from seconds to seconds', () => {
+  it('converts from seconds to seconds', () => {
     expect(timeMe.seconds(10).inSeconds()).toEqual(10)
   })
 
-  it('convet from minutes to seconds', () => {
+  it('converts from minutes to seconds', () => {
     expect(timeMe.minutes(10).inSeconds()).toEqual(600)
   })
 
-  it('convet from hours to seconds', () => {
+  it('converts from hours to seconds', () => {
     expect(timeMe.hours(10).inSeconds()).toEqual(36000)
   })
 
-  it('convet from days to seconds', () => {
+  it('converts from days to seconds', () => {
     expect(timeMe.days(1).inSeconds()).toEqual(86400)
   })
 
-   it('convet from days to hours', () => {
-     expect(timeMe.days(1).inHours()).toEqual(24)
-   })
+  it('converts from days to hours', () => {
+    expect(timeMe.days(1).inHours()).toEqual(24)
+  })
 
-  // it('convet from weeks to seconds', () => {
-  //   expect(seconds.weeks(10).inSeconds()).toEqual(36000)
-  // })
+  it('converts from weeks to seconds', () => {
+    expect(timeMe.weeks(10).inSeconds()).toEqual(6048000)
+  })
 
-  // it('convet from months to seconds', () => {
-  //   expect(seconds.months(10).inSeconds()).toEqual(36000)
-  // })
+  it('converts from months to seconds', () => {
+    expect(timeMe.months(10).inSeconds()).toEqual(26784000)
+  })
 
-  // it('convet from years to seconds', () => {
-  //   expect(seconds.years(10).inSeconds()).toEqual(36000)
-  // })
-  // it('convet from decade to seconds', () => {
-  //   expect(seconds.decades(10).inSeconds()).toEqual(36000)
-  // })
+  it('converts from years to seconds', () => {
+    expect(timeMe.years(1).inSeconds()).toEqual(31536000)
+  })
+
+  it('converts from decade to seconds', () => {
+    expect(timeMe.decades(10).inSeconds()).toEqual(3153600000)
+  })
 })
