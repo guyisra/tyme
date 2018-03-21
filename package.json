@@ -1,13 +1,19 @@
 {
-  "name": "timeMe",
+  "name": "timeme",
   "version": "1.0.0",
-  "description": "convert anything to seconds",
+  "description": "convert any time unit to any other time unit, ever!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn test index.spec.js --coverage"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": ["time", "convert"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guyisra/timeme.git"
+  },
+    "homepage": "https://github.com/guyisra/timeme",
+  "author": "Guy Israeli",
+  "license": "MIT",
   "devDependencies": {
     "coverage": "^0.0.0",
     "jest": "^22.4.2"
