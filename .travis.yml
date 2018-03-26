@@ -7,6 +7,6 @@ node_js:
   - "7.10.0"
   - "6.13.0"
 install:
-  - npm install
+  - yarn install
 script:
-  - npm test
+  - yarn test
