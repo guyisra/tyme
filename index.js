@@ -20,6 +20,13 @@ class Second extends TimeUnit {
   }
 }
 
+//https://en.wikipedia.org/wiki/Orders_of_magnitude_(time)#High_orders_of_magnitude_-_1_s_and_beyond
+class Killosecond extends timeUnit {
+  static inSeconds() {
+    return 16 * Minute.inSeconds() + 40 * Second.inSeconds()
+  }
+}
+
 class Minute extends TimeUnit {
   static inSeconds() {
     return Second.inSeconds() * 60
@@ -35,6 +42,16 @@ class Hour extends TimeUnit {
 class Day extends TimeUnit {
   static inSeconds() {
     return Hour.inSeconds() * 24
+  }
+}
+class Megasecond extends timeUnit {
+  static inSeconds() {
+    return (
+      11 * Day.inSeconds() +
+      13 * Hour.inSeconds() +
+      46 * Minute.inSeconds() +
+      40 * Second.inSeconds()
+    )
   }
 }
 
@@ -63,13 +80,12 @@ class Decade extends TimeUnit {
 }
 
 class Millisecond extends TimeUnit {
-  static inSeconds () {
+  static inSeconds() {
     return Second.inSeconds() / 1000
   }
 }
 
-const timeUnits = [Second, Minute, Hour, Day, Week, Month, Year, Decade, Millisecond]
-
+const timeUnits = [Second, Minute, Hour, Day, Week, Month, Year, Decade, Millisecond, Killosecond]
 
 const timeFunctions = {}
 timeUnits.forEach(timeUnit => {
