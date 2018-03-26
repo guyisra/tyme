@@ -1,10 +1,10 @@
 {
   "name": "tyme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "convert any time unit to any other time unit, ever!",
   "main": "index.js",
   "scripts": {
-    "test": "yarn test index.spec.js --coverage"
+    "test": "jest index.spec.js --coverage"
   },
   "keywords": ["time", "convert"],
   "repository": {
@@ -15,7 +15,6 @@
   "author": "Guy Israeli <guy.israeli@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "coverage": "^0.0.0",
     "jest": "^22.4.2"
   }
 }
