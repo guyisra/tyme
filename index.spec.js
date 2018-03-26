@@ -1,6 +1,6 @@
 const timeMe = require('.')
 
-describe('ssseconds', () => {
+describe('tyme', () => {
   it('converts from seconds to seconds', () => {
     expect(timeMe.seconds(10).inSeconds()).toEqual(10)
   })

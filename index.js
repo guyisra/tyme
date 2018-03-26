@@ -21,7 +21,7 @@ class Second extends TimeUnit {
 }
 
 //https://en.wikipedia.org/wiki/Orders_of_magnitude_(time)#High_orders_of_magnitude_-_1_s_and_beyond
-class Killosecond extends timeUnit {
+class Killosecond extends TimeUnit {
   static inSeconds() {
     return 16 * Minute.inSeconds() + 40 * Second.inSeconds()
   }
@@ -44,7 +44,7 @@ class Day extends TimeUnit {
     return Hour.inSeconds() * 24
   }
 }
-class Megasecond extends timeUnit {
+class Megasecond extends TimeUnit {
   static inSeconds() {
     return (
       11 * Day.inSeconds() +
