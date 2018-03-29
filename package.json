@@ -1,6 +1,6 @@
 {
   "name": "tyme",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "convert any time unit to any other time unit, ever!",
   "main": "index.js",
   "scripts": {

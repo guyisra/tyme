@@ -43,6 +43,4 @@ timeTypes.forEach(timeUnit => {
   }
 })
 
-module.exports = {
-  ...timeFunctions
-}
+module.exports = timeFunctions
