@@ -41,8 +41,7 @@ yarn test
 
 ## Release History
 
-* 1.0.0
- - Initial release
+see changelog.md
 
 ## Meta
 
