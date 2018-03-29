@@ -31,6 +31,25 @@ hours(3).inDays() // 0.125
 minutes(60).inHours() // 1
 ```
 
+## Supported Time Units
+
+|Name|Symbol|Value|
+|----|----|----|
+|millisecond|ms|0.001s||hectosecond|hs|1m + 40s|
+|killosecond|ks|16m + 40s|
+|megasecond|Ms|11d + 13h + 46m + 40s|
+|gigasecond|Gs|31Y + 287d|
+|terasecond|Ts|31600Y|
+|second|s|1s|
+|minute|m|60s|
+|hour|h|60m|
+|day|d|24h|
+|week|w|7d|
+|month|M|31d|
+|year|Y|365d|
+|decade|D|10Y|
+
+
 ## Development setup
 
 
